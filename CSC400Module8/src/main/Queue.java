@@ -19,33 +19,27 @@ public class Queue {
 	}
 	
 	public void sortByLastName() {
-		quickSort(0, people.size() - 1, "lastName");
+		quickSort(0, people.size() - 1, (a, b) -> b.lastName.compareTo(a.lastName));
 	}
 	
 	public void sortByAge() {
-		quickSort(0, people.size() - 1, "age");
+		quickSort(0, people.size() - 1, (a, b) -> b.age - a.age);
 	}
 	
-	private void quickSort(int low, int high, String key) {
+	private void quickSort(int low, int high, Comparator<Person> comp) {
 		if (low < high) {
-			int pivot = partition(low, high, key);
-			quickSort(low, pivot - 1, key);
-			quickSort(pivot + 1, high, key);
+			int pivot = partition(low, high, comp);
+			quickSort(low, pivot - 1, comp);
+			quickSort(pivot + 1, high, comp);
 		}
 	}
 	
-	private int partition(int low, int high, String key) {
+	private int partition(int low, int high, Comparator<Person> comp) {
 		Person pivot = people.get(high);
 		int i = low - 1;
 		
-		for (int j = low; j < high; ++j) {
-			boolean condition;
-			if (key.equals("lastName")) {
-				condition = people.get(j).lastName.compareTo(pivot.lastName) >= 0;
-			} else {
-				condition = people.get(j).age >= pivot.age;
-			}
-			if (condition) {
+		for (int j = low; j < high; j++) {
+			if (comp.compare(people.get(j), pivot) <= 0) {
 				i++;
 				swap(i, j);
 			}
