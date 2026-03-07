@@ -5,14 +5,14 @@ import java.util.*;
 public class Queue {
 	private List<Person> people;
 	
-	public PersonQueue() {
+	public Queue() {
 		people = new ArrayList<>();
 	}
 	
-	public void addPerson(Person person) {
+	public void enqueue(Person person) {
 		people.add(person);
 	}
-	public void display() {
+	public void displayQueue() {
 		for(Person e : people) {
 			System.out.println(e);
 		}
