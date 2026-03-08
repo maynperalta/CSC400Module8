@@ -23,16 +23,16 @@ public class Queue {
 		
 		for (int i = 0; i < people.size(); i++) {
 			Person e = people.get(i);
-			System.out.printf("%-3d %-15s %-15s %-5d%n", i + 1, e.firstName, e.lastName, e.age);
+			System.out.printf("%-3d %-15s %-15s %-5d%n", i + 1, e.getFirstName(), e.getLastName(), e.getAge());
 		}
 	}
 // Sort queue by last name in descending order	
 	public void sortByLastName() {
-		quickSort(0, people.size() - 1, (a, b) -> b.lastName.compareTo(a.lastName));
+		quickSort(0, people.size() - 1, (a, b) -> b.getLastName().compareTo(a.getLastName()));
 	}
 // Sort queue by age in descending order	
 	public void sortByAge() {
-		quickSort(0, people.size() - 1, (a, b) -> Integer.compare(b.age, a.age);
+		quickSort(0, people.size() - 1, (a, b) -> Integer.compare(b.getAge(), a.getAge()));
 	}
 // Use comparator for quickSort 	
 	private void quickSort(int low, int high, Comparator<Person> comp) {
