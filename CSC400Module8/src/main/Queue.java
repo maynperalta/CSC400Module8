@@ -13,8 +13,17 @@ public class Queue {
 		people.add(person);
 	}
 	public void displayQueue() {
-		for(Person e : people) {
-			System.out.println(e);
+		if (people.isEmpty()) {
+			System.out.println("Queue is empty.");
+			return;
+		}
+		
+		System.out.printf("%-3s %-15s %-15s %-5s%n", "#", "First Name", "Last Name", "Age");
+		System.out.println("------------------------------------------");
+		
+		for (int i = 0; i < people.size(); i++) {
+			Person e = people.get(i);
+			System.out.printf("%-3d %-15s %-15s %-5d%n", i + 1, e.firstName, e.lastName, e.age);
 		}
 	}
 	
@@ -23,7 +32,7 @@ public class Queue {
 	}
 	
 	public void sortByAge() {
-		quickSort(0, people.size() - 1, (a, b) -> b.age - a.age);
+		quickSort(0, people.size() - 1, (a, b) -> Integer.compare(b.age, a.age);
 	}
 	
 	private void quickSort(int low, int high, Comparator<Person> comp) {
