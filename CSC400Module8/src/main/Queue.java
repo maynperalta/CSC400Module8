@@ -4,11 +4,11 @@ import java.util.*;
 
 public class Queue {
 	private List<Person> people;
-	
+// Constructor to initialize empty queue	
 	public Queue() {
 		people = new ArrayList<>();
 	}
-	
+// Add person to queue	
 	public void enqueue(Person person) {
 		people.add(person);
 	}
@@ -17,7 +17,7 @@ public class Queue {
 			System.out.println("Queue is empty.");
 			return;
 		}
-		
+// Display queue in table format		
 		System.out.printf("%-3s %-15s %-15s %-5s%n", "#", "First Name", "Last Name", "Age");
 		System.out.println("------------------------------------------");
 		
@@ -26,15 +26,15 @@ public class Queue {
 			System.out.printf("%-3d %-15s %-15s %-5d%n", i + 1, e.firstName, e.lastName, e.age);
 		}
 	}
-	
+// Sort queue by last name in descending order	
 	public void sortByLastName() {
 		quickSort(0, people.size() - 1, (a, b) -> b.lastName.compareTo(a.lastName));
 	}
-	
+// Sort queue by age in descending order	
 	public void sortByAge() {
 		quickSort(0, people.size() - 1, (a, b) -> Integer.compare(b.age, a.age);
 	}
-	
+// Use comparator for quickSort 	
 	private void quickSort(int low, int high, Comparator<Person> comp) {
 		if (low < high) {
 			int pivot = partition(low, high, comp);
@@ -42,7 +42,7 @@ public class Queue {
 			quickSort(pivot + 1, high, comp);
 		}
 	}
-	
+// Partition method for quickSort	
 	private int partition(int low, int high, Comparator<Person> comp) {
 		Person pivot = people.get(high);
 		int i = low - 1;
@@ -56,6 +56,7 @@ public class Queue {
 		swap(i + 1, high);
 		return i + 1;
 	}
+// Swap elements in list.	
 	private void swap(int i, int j) {
 		Person temp = people.get(i);
 		people.set(i, people.get(j));
